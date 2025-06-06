@@ -1,0 +1,56 @@
+@page "/statistic/revenue"
+@inject StatisticService StatisticService
+@inject IJSRuntime JS
+@using Admin.Services
+@using System.Globalization
+
+<h3 class="mt-4">Thống kê doanh thu theo tháng</h3>
+
+<input type="number" @bind="month" min="1" max="12" placeholder="Tháng" class="form-control w-25 d-inline me-2" />
+<input type="number" @bind="year" placeholder="Năm" class="form-control w-25 d-inline me-2" />
+<button class="btn btn-primary" @onclick="LoadData">Tải dữ liệu</button>
+
+@if (data != null && data.Any())
+{
+    <canvas id="revenueChart" width="800" height="400"></canvas>
+}
+else if (data != null)
+{
+    <p class="mt-3 text-danger">Không có dữ liệu doanh thu.</p>
+}
+
+@code {
+    private int month = DateTime.Now.Month;
+    private int year = DateTime.Now.Year;
+    private List<RevenueStatistic> data = new();
+
+    private bool shouldRenderChart = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        data = await StatisticService.GetMonthlyRevenue(month, year);
+        shouldRenderChart = true;
+        StateHasChanged(); // Kích hoạt render lại DOM
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (shouldRenderChart && data != null && data.Any())
+        {
+            shouldRenderChart = false;
+            await DrawChart();
+        }
+    }
+
+    private async Task DrawChart()
+    {
+        var labels = data.Select(d => DateTime.Parse(d.Date).ToString("dd/MM")).ToArray();
+        var revenues = data.Select(d => d.Revenue).ToArray();
+        await JS.InvokeVoidAsync("drawRevenueChart", labels, revenues);
+    }
+}

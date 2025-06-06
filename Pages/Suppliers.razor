@@ -1,0 +1,188 @@
+@page "/suppliers"
+@* @inject HttpClient Http *@
+@inject Admin.Services.AuthorizedHttpClient Http
+@using Admin.Models
+
+<PageTitle>Nhà cung cấp</PageTitle>
+
+<h3>Nhà cung cấp</h3>
+
+@if (suppliers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="d-flex justify-content-start mb-2">
+        <button class="btn btn-success" @onclick="AddSupplier">+ Thêm nhà cung cấp mới</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                @* <th>Id</th> *@
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var supplier in suppliers)
+            {
+                <tr>
+                    @* <td>@supplier.Id</td> *@
+                    <td>@supplier.Name</td>
+                    <td>@supplier.Phone</td>
+                    <td>@supplier.Email</td>
+                    <td>@supplier.Address</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Modal: Chi tiết và chỉnh sửa -->
+@if (newSupplier != null)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@modalTitle</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+                <div class="modal-body">
+                    @if (isCreate)
+                    {
+                        <div class="mb-3">
+                            <label>Tên:</label>
+                            <input class="form-control" @bind="newSupplier.Name" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Số điện thoại:</label>
+                            <input class="form-control" @bind="newSupplier.Phone" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Email:</label>
+                            <input class="form-control" @bind="newSupplier.Email" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Địa chỉ:</label>
+                            <input class="form-control" @bind="newSupplier.Address" />
+                        </div>
+                    }
+                    else
+                    {
+                        <p><strong>Tên:</strong> @newSupplier.Name</p>
+                        <p><strong>SĐT:</strong> @newSupplier.Phone</p>
+                        <p><strong>Email:</strong> @newSupplier.Email</p>
+                        <p><strong>Địa chỉ:</strong> @newSupplier.Address</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    @if (isCreate)
+                    {
+                        <button class="btn btn-primary" @onclick="SaveSupplier">Lưu</button>
+                    }
+                    <button class="btn btn-secondary" @onclick="CloseModal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private List<Supplier>? suppliers;
+
+    private Supplier? newSupplier;
+    private string modalTitle = "";
+    private bool isCreate = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSuppliers();
+    }
+
+    private void AddSupplier()
+    {
+        newSupplier = new Supplier();
+        
+        modalTitle = "Thêm nhà cung cấp mới";
+        isCreate = true;
+    }
+
+    private async Task LoadSuppliers()
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponse>("http://localhost:8080/supermarket/supplier");
+        if (response?.Code == 1000)
+        {
+            suppliers = response.Result;
+        }
+        else
+        {
+            // Handle error case here, e.g., show a message to the user
+            Console.WriteLine($"Error: {response?.Message}");
+        }
+    }
+
+    private async Task SaveSupplier(){
+        if (newSupplier == null) return;
+
+        bool isLoggedIn = await Http.LoginAsync("admin", "admin");
+        if (!isLoggedIn)
+        {
+            Console.WriteLine("Login failed");
+            return;
+        }
+
+        var body = new CreateSupplierRequest
+        {
+            Name = newSupplier.Name,
+            Phone = newSupplier.Phone,
+            Email = newSupplier.Email,
+            Address = newSupplier.Address
+        };
+
+        HttpResponseMessage? response = null;
+
+        if (isCreate)
+        {
+            // Gọi POST API để tạo mới
+            response = await Http.PostAsJsonAsync("http://localhost:8080/supermarket/supplier", body);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadSuppliers(); // reload danh sách
+            CloseModal();         // đóng modal
+        }
+        else
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Lỗi: {content}");
+        }
+    }
+
+    private void CloseModal()
+    {
+        newSupplier = null;
+        isCreate = false;
+    }
+
+    public class ApiResponse
+    {
+        public int Code { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<Supplier> Result { get; set; } = new List<Supplier>();
+    }
+
+    public class CreateSupplierRequest
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+    }
+}

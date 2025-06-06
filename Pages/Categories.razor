@@ -1,0 +1,170 @@
+@page "/categories"
+@* @inject HttpClient Http *@
+@inject Admin.Services.AuthorizedHttpClient Http
+@using Admin.Models
+
+<PageTitle>Danh mục sản phẩm</PageTitle>
+
+<h3>Danh mục sản phẩm</h3>
+
+@if (categories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="d-flex justify-content-start mb-2">
+        <button class="btn btn-success" @onclick="AddCategory">+ Thêm danh mục mới</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in categories)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>@category.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Modal: Chi tiết và chỉnh sửa -->
+@if (newCategory != null)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@modalTitle</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+                <div class="modal-body">
+                    @if (isCreate)
+                    {
+                        <div class="mb-3">
+                            <label>Tên danh mục:</label>
+                            <input class="form-control" @bind="newCategory.Name" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Mô tả:</label>
+                            <input class="form-control" @bind="newCategory.Description" />
+                        </div>
+                    }
+                    else
+                    {
+                        <p><strong>Tên:</strong> @newCategory.Name</p>
+                        <p><strong>Mô tả:</strong> @newCategory.Description</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    @if (isCreate)
+                    {
+                        <button class="btn btn-primary" @onclick="SaveCategory">Lưu</button>
+                    }
+                    <button class="btn btn-secondary" @onclick="CloseModal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private List<Category>? categories;
+
+    private Category? newCategory;
+    private string modalTitle = "";
+    private bool isCreate = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCategories();
+    }
+
+    private void AddCategory()
+    {
+        newCategory = new Category();
+        
+        modalTitle = "Thêm danh mục mới";
+        isCreate = true;
+    }
+
+    private async Task LoadCategories()
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponse>("http://localhost:8080/supermarket/category/all");
+        if (response?.Code == 1000)
+        {
+            categories = response.Result;
+        }
+        else
+        {
+            // Handle error case here, e.g., show a message to the user
+            Console.WriteLine($"Error: {response?.Message}");
+        }
+    }
+
+    private async Task SaveCategory(){
+        if (newCategory == null) return;
+
+        bool isLoggedIn = await Http.LoginAsync("admin", "admin");
+        if (!isLoggedIn)
+        {
+            Console.WriteLine("Login failed");
+            return;
+        }
+
+        var body = new CreateCategoryRequest
+        {
+            Name = newCategory.Name,
+            Description = newCategory.Description
+        };
+
+        HttpResponseMessage? response = null;
+
+        if (isCreate)
+        {
+            // Gọi POST API để tạo mới
+            response = await Http.PostAsJsonAsync("http://localhost:8080/supermarket/category", body);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadCategories(); // reload danh sách
+            CloseModal();         // đóng modal
+        }
+        else
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Lỗi: {content}");
+        }
+    }
+
+    private void CloseModal()
+    {
+        newCategory = null;
+        isCreate = false;
+    }
+
+    public class ApiResponse
+    {
+        public int Code { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<Category> Result { get; set; } = new List<Category>();
+    }
+
+    public class CreateCategoryRequest
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+    }
+}

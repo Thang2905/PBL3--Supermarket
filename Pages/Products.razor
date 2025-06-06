@@ -1,0 +1,376 @@
+﻿@page "/products"
+@* @inject HttpClient Http *@
+@inject Admin.Services.AuthorizedHttpClient Http
+@using Admin.Models
+
+<PageTitle>Sản phẩm</PageTitle>
+
+<h3>Sản phẩm</h3>
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="d-flex justify-content-start mb-2">
+        <button class="btn btn-success" @onclick="AddProduct">+ New</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image Url</th>
+                <th>Price</th>
+                <th>Unit</th>
+                @* <th>Category</th> *@
+                <th>Supplier</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>
+                        <img src="@product.ImageUrl" alt="@product.Name" width="100" />
+                    </td>
+                    <td>@product.Price</td>
+                    <td>@product.UnitPrice</td>
+                    @* <td>
+                        @if (product.Categories != null)
+                        {
+                            <p>@product.Categories.Name</p>
+                        }
+                        else
+                        {
+                            <p>Chưa có danh mục</p>
+                        }
+                    </td> *@
+                    <td>
+                        @if (product.Supplier != null)
+                        {
+                            <p>@product.Supplier.Name</p>
+                        }
+                        else
+                        {
+                            <p>Chưa có nhà cung cấp</p>
+                        }
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => ViewDetails(product.Id)">Details</button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => EditProduct(product.Id)">Update</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteProduct(product.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Modal: Thêm, chi tiết và chỉnh sửa -->
+@if (selectedProduct != null)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@modalTitle</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+                <div class="modal-body">
+                    @if (isEditing)
+                    {
+                        <div class="mb-3">
+                            <label>Tên sản phẩm:</label>
+                            <input class="form-control" @bind="selectedProduct.Name" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Hình ảnh URL:</label>
+                            <input class="form-control" @bind="selectedProduct.ImageUrl" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Số lượng:</label>
+                            <input class="form-control" type="number" @bind="selectedProduct.StockQuantity" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Giá:</label>
+                            <input type="number" class="form-control" @bind="selectedProduct.Price" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Đơn vị:</label>
+                            <input class="form-control" @bind="selectedProduct.UnitPrice" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Giảm giá:</label>
+                            <input class="form-control" type="number" @bind="selectedProduct.Discount" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Ngày tạo:</label>
+                            <input class="form-control" type="date" @bind="selectedProduct.CreateDate" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Hết hạn:</label>
+                            <input class="form-control" type="date" @bind="selectedProduct.ExpiryDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label>Nhà cung cấp:</label>
+                            <select class="form-select" @bind="selectedProduct.Supplier.Id">
+                                <option value="">-- Chọn nhà cung cấp --</option>
+                                @foreach (var sup in suppliers)
+                                {
+                                    if(sup != null)
+                                    {
+                                        <option value="@sup.Id">@sup.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Danh mục:</label>
+                            <select class="form-select" @bind="selectedProduct.Categories.Id">
+                                <option value="">-- Chọn danh mục --</option>
+                                @foreach (var cat in categories)
+                                {
+                                    if(cat != null)
+                                    {
+                                        <option value="@cat.Id">@cat.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    }
+                    else
+                    {
+                        <p><strong>ID:</strong> @selectedProduct.Id</p>
+                        <p><strong>Tên:</strong> @selectedProduct.Name</p>
+                        <p>
+                            <strong>Hình ảnh:<img src="@selectedProduct.ImageUrl" alt="@selectedProduct.Name" width="100" /></strong>
+                        </p>
+                        <p><strong>Số lượng:</strong> @selectedProduct.StockQuantity</p>
+                        <p><strong>Giá:</strong> @selectedProduct.Price</p>
+                        <p><strong>Đơn vị:</strong> @selectedProduct.UnitPrice</p>
+                        <p><strong>Giảm giá:</strong> @selectedProduct.Discount</p>
+                        <p><strong>Ngày sản xuất:</strong> @selectedProduct.CreateDate</p>
+                        <p><strong>Ngày hết hạn:</strong> @selectedProduct.ExpiryDate</p>
+                        <p><strong>Nhà cung cấp:</strong> @selectedProduct?.Supplier?.Name</p>
+                        @* <p><strong>Danh mục:</strong> @selectedProduct?.Categories?.Name</p> *@
+                    }
+                </div>
+                <div class="modal-footer">
+                    @if (isEditing)
+                    {
+                        <button class="btn btn-primary" @onclick="SaveProduct">Lưu</button>
+                    }
+                    <button class="btn btn-secondary" @onclick="CloseModal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    private List<Product>? products;
+    private List<Category> categories = new();
+    private List<Supplier> suppliers = new();
+
+    private Product? selectedProduct;
+    private string modalTitle = "";
+    private bool isEditing = false;
+    private bool isCreate = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.WhenAll(
+            LoadCategories(),
+            LoadSuppliers(),
+            LoadProducts()
+        );
+    }
+
+    private async Task LoadCategories()
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponseCategory>("http://localhost:8080/supermarket/category/all");
+        if (response?.Code == 1000)
+        {
+            categories = response.Result;
+        }
+    }
+
+    private async Task LoadSuppliers()
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponseSupplier>("http://localhost:8080/supermarket/supplier");
+        if (response?.Code == 1000)
+        {
+            suppliers = response.Result;
+        }
+    }
+
+    private async Task LoadProducts()
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponse>("http://localhost:8080/supermarket/product/all");
+        if (response?.Code == 1000)
+        {
+            products = response.Result;
+        }
+        else
+        {
+            // Handle error case here, e.g., show a message to the user
+            Console.WriteLine($"Error: {response?.Message}");
+        }
+    }
+
+    private void AddProduct()
+    {
+        selectedProduct = new Product()
+        {
+            Categories = new Category(),
+            Supplier = new Supplier()
+        };
+        modalTitle = "Thêm sản phẩm mới";
+        isCreate = true;
+        isEditing = true;
+    }
+
+    private async Task ViewDetails(Guid id)
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponseSingle<Product>>($"http://localhost:8080/supermarket/product/id/{id}");
+        if (response != null && response.Code == 1000)
+        {
+            selectedProduct = response.Result;
+            modalTitle = "Chi tiết sản phẩm";
+            isCreate = false;
+            isEditing = false;
+        }
+    }
+
+    private async Task EditProduct(Guid id)
+    {
+        var response = await Http.GetFromJsonAsync<ApiResponseSingle<Product>>($"http://localhost:8080/supermarket/product/id/{id}");
+        if (response != null && response.Code == 1000)
+        {
+            selectedProduct = response.Result;
+
+            selectedProduct.Supplier ??= new Supplier();
+            selectedProduct.Categories ??= new Category();
+
+            modalTitle = "Chỉnh sửa sản phẩm";
+            isCreate = false;
+            isEditing = true;
+        }
+    }
+
+    private async Task SaveProduct(){
+        if (selectedProduct == null) return;
+
+        bool isLoggedIn = await Http.LoginAsync("admin", "admin");
+        if (!isLoggedIn)
+        {
+            Console.WriteLine("Login failed");
+            return;
+        }
+
+        var body = new
+        {
+            name = selectedProduct.Name,
+            imageUrl = selectedProduct.ImageUrl,
+            stockQuantity = selectedProduct.StockQuantity,
+            price = selectedProduct.Price,
+            unit_price = selectedProduct.UnitPrice,
+            discount = selectedProduct.Discount,
+            createDate = selectedProduct.CreateDate,
+            expiryDate = selectedProduct.ExpiryDate,
+            supplierId = selectedProduct.Supplier?.Id,
+            categoryId = selectedProduct.Categories != null ? new List<long> { selectedProduct.Categories.Id } : new List<long>()
+        };
+
+        HttpResponseMessage response;
+
+        if (isCreate)
+        {
+            // Gọi POST API để tạo mới
+            response = await Http.PostAsJsonAsync("http://localhost:8080/supermarket/product", body);
+        }
+        else
+        {
+            // Gọi PATCH để cập nhật (chưa implement ở đây)
+            response = await Http.PatchAsJsonAsync($"http://localhost:8080/supermarket/product/update?productId={selectedProduct.Id}", body);
+        }
+
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadProducts(); // reload danh sách
+            CloseModal();         // đóng modal
+        }
+        else
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Lỗi: {content}");
+        }
+    }
+
+    private async Task DeleteProduct(Guid id)
+    {
+        var confirmed = await JS.InvokeAsync<bool>("confirm", $"Bạn có chắc chắn muốn xóa sản phẩm ID {id}?");
+        if (!confirmed) return;
+
+        bool isLoggedIn = await Http.LoginAsync("admin", "admin");
+        if (!isLoggedIn)
+        {
+            Console.WriteLine("Login failed");
+            return;
+        }
+
+        var response = await Http.DeleteAsync($"http://localhost:8080/supermarket/product/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            products.RemoveAll(p => p.Id == id); // Xóa khỏi danh sách
+        }
+        else
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            if (content.Contains("PRODUCT STILL AVAILABLE"))
+            {
+                // Hiển thị thông báo cho người dùng
+                Console.WriteLine("Không thể xóa sản phẩm vì vẫn còn hàng trong kho.");
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        selectedProduct = null;
+        isEditing = false;
+    }
+
+    [Inject] IJSRuntime JS { get; set; } = default!;
+
+    public class ApiResponseCategory
+    {
+        public int Code { get; set; }
+        public List<Category> Result { get; set; } = new();
+    }
+
+    public class ApiResponseSupplier
+    {
+        public int Code { get; set; }
+        public List<Supplier> Result { get; set; } = new();
+    }
+
+    public class ApiResponse
+    {
+        public int Code { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public List<Product> Result { get; set; } = new List<Product>();
+    }
+
+    public class ApiResponseSingle<T>
+    {
+        public int Code { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public T Result { get; set; } = default!;
+    }
+}

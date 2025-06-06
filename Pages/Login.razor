@@ -1,0 +1,71 @@
+@page "/login"
+@* @inject HttpClient Http *@
+@inject Admin.Services.AuthorizedHttpClient Http
+@inject NavigationManager Navigation
+@inject Admin.Services.AuthService AuthService
+
+<h3>Login</h3>
+
+@if (!string.IsNullOrEmpty(error))
+{
+    <p style="color:red">@error</p>
+}
+
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>Email:</label>
+        <InputText @bind-Value="loginModel.Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Password:</label>
+        <InputText @bind-Value="loginModel.Password" class="form-control" type="password" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Login</button>
+</EditForm>
+
+@code {
+    private LoginModel loginModel = new();
+    private string error = string.Empty;
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("https://localhost:5001/api/auth/login", loginModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (result?.Token != null)
+                {
+                    await AuthService.SaveToken(result.Token);
+                    Navigation.NavigateTo("/"); // Redirect sau login
+                }
+            }
+            else
+            {
+                error = "Invalid login credentials.";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = "Login failed: " + ex.Message;
+        }
+    }
+
+    public class LoginModel
+    {
+        public string Email { get; set; } = "";
+        public string Password { get; set; } = "";
+    }
+
+    public class LoginResponse
+    {
+        public string? Token { get; set; }
+    }
+}
