@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <base href="/PBL3--Supermarket/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="Admin.styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="_content/Blazorise.Bootstrap5/blazorise.bootstrap5.css" rel="stylesheet" />
+    <link href="_content/Blazorise.Icons.FontAwesome/blazorise.icons.fontawesome.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function drawRevenueChart(labels, data) {
+            const canvas = document.getElementById('revenueChart');
+            if (!canvas) {
+                console.error("Không tìm thấy phần tử canvas 'revenueChart'");
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+             if (window.revenueChart && typeof window.revenueChart.destroy === 'function') {
+                window.revenueChart.destroy();
+            }
+
+            window.revenueChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Doanh thu (VNĐ)',
+                        data: data,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1,
+                        fill: true,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
