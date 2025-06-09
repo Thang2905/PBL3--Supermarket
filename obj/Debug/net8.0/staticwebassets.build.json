@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R1F1xZ2u/dT7nEOAFIVIgFePKlPEs1k/Nf/c7Ik3w+c=",
+  "Hash": "/NKogKj1XlHWuRsvmZ0QxsbmbQTjUAbrh+MW1xcJq9U=",
   "Source": "Admin",
   "BasePath": "/",
   "Mode": "Root",
@@ -1522,8 +1522,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "e7zctjlw62",
-      "Integrity": "xgnTIn4jldGiK5jgeOK2OhU+QzIVMnUrM9FCLIh7tF8=",
+      "Fingerprint": "9ssz96q3v3",
+      "Integrity": "h6JCGkr9lD2f89ApzSgIJfeoZg/Vxj4oFij0J0PjEOk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\Admin.pdb"
@@ -1543,8 +1543,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "ht5uvo0bvk",
-      "Integrity": "C+jkcg+aWuWNhVK8pEKvER9n98Ean5nhyG5DwoWpj/M=",
+      "Fingerprint": "8wngdbec34",
+      "Integrity": "+PUeuv7LqwN4ZH5DOADQFxiaxTpHh6VM1hUwJHuSSlI=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\webcil\\Admin.wasm"
@@ -1564,8 +1564,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "smedm14z4e",
-      "Integrity": "rPosOxDxFpWsyZznCjwGDsk0tAgNMhelmCoWQQJTP60=",
+      "Fingerprint": "mcdaz0lqn0",
+      "Integrity": "6srReQe1hmPTeIGhELQDvUfnvLSDzzQyPISDXKmKm54=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\blazor.boot.json"
@@ -9845,7 +9845,7 @@
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Private.Xml.Linq.wasm"
     },
     {
-      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-smedm14z4e.gz",
+      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-mcdaz0lqn0.gz",
       "SourceId": "Admin",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\",
@@ -9859,8 +9859,8 @@
       "RelatedAsset": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "arc9dpcq7p",
-      "Integrity": "1hng4wOb4xJypeECpg+wgFZExymK18+/ihzJ/nOfMQ4=",
+      "Fingerprint": "gbiqpwl6us",
+      "Integrity": "xBcY2xwsq+zZBXBztVYtJK/b36av8XJ80kehCZFGAMQ=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -10349,7 +10349,7 @@
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Options.wasm"
     },
     {
-      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-ht5uvo0bvk.gz",
+      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-8wngdbec34.gz",
       "SourceId": "Admin",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\",
@@ -10363,8 +10363,8 @@
       "RelatedAsset": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Admin.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "glb21tmjbt",
-      "Integrity": "zAPnmvcpjsjgp8RFgOyBHpwzjNv8acW0Z5LqIQZJAXk=",
+      "Fingerprint": "33wjc2js2d",
+      "Integrity": "Ly1K35rDMsRjAklZF6aFVuOYHu6JjRTvFk90u7kzmww=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Admin.wasm"
@@ -10475,7 +10475,7 @@
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Logging.wasm"
     },
     {
-      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-e7zctjlw62.gz",
+      "Identity": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-9ssz96q3v3.gz",
       "SourceId": "Admin",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\",
@@ -10489,8 +10489,8 @@
       "RelatedAsset": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Admin.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "8kj2qkuqww",
-      "Integrity": "eKY4HUcT3wjVpfztMVU6yMFAs26V7l7Q1w1fDdOE1wY=",
+      "Fingerprint": "1r6k3urebm",
+      "Integrity": "Laord4qTWdgM7CBnnMhJaHpkFHMu+XuLfwSs9h/dlxY=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Admin.pdb"
@@ -16603,7 +16603,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "70948"
+          "Value": "70672"
         },
         {
           "Name": "Content-Type",
@@ -16611,7 +16611,46 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xgnTIn4jldGiK5jgeOK2OhU+QzIVMnUrM9FCLIh7tF8=\""
+          "Value": "\"h6JCGkr9lD2f89ApzSgIJfeoZg/Vxj4oFij0J0PjEOk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 03:58:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-h6JCGkr9lD2f89ApzSgIJfeoZg/Vxj4oFij0J0PjEOk="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/Admin.pdb",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-9ssz96q3v3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000020216315"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "49464"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Laord4qTWdgM7CBnnMhJaHpkFHMu+XuLfwSs9h/dlxY=\""
         },
         {
           "Name": "Last-Modified",
@@ -16620,45 +16659,6 @@
         {
           "Name": "Cache-Control",
           "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-xgnTIn4jldGiK5jgeOK2OhU+QzIVMnUrM9FCLIh7tF8="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/Admin.pdb",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-e7zctjlw62.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000020448225"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "48903"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"eKY4HUcT3wjVpfztMVU6yMFAs26V7l7Q1w1fDdOE1wY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:41 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -16674,19 +16674,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"xgnTIn4jldGiK5jgeOK2OhU+QzIVMnUrM9FCLIh7tF8=\""
+          "Value": "W/\"h6JCGkr9lD2f89ApzSgIJfeoZg/Vxj4oFij0J0PjEOk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xgnTIn4jldGiK5jgeOK2OhU+QzIVMnUrM9FCLIh7tF8="
+          "Value": "sha256-h6JCGkr9lD2f89ApzSgIJfeoZg/Vxj4oFij0J0PjEOk="
         }
       ]
     },
     {
       "Route": "_framework/Admin.pdb.gz",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-e7zctjlw62.gz",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\z6bkakvzay-9ssz96q3v3.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16695,7 +16695,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "48903"
+          "Value": "49464"
         },
         {
           "Name": "Content-Type",
@@ -16703,11 +16703,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eKY4HUcT3wjVpfztMVU6yMFAs26V7l7Q1w1fDdOE1wY=\""
+          "Value": "\"Laord4qTWdgM7CBnnMhJaHpkFHMu+XuLfwSs9h/dlxY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:41 GMT"
+          "Value": "Mon, 09 Jun 2025 02:20:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16725,7 +16725,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eKY4HUcT3wjVpfztMVU6yMFAs26V7l7Q1w1fDdOE1wY="
+          "Value": "sha256-Laord4qTWdgM7CBnnMhJaHpkFHMu+XuLfwSs9h/dlxY="
         }
       ]
     },
@@ -16740,7 +16740,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "125717"
+          "Value": "125205"
         },
         {
           "Name": "Content-Type",
@@ -16748,7 +16748,46 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"C+jkcg+aWuWNhVK8pEKvER9n98Ean5nhyG5DwoWpj/M=\""
+          "Value": "\"+PUeuv7LqwN4ZH5DOADQFxiaxTpHh6VM1hUwJHuSSlI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 03:58:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+PUeuv7LqwN4ZH5DOADQFxiaxTpHh6VM1hUwJHuSSlI="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/Admin.wasm",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-8wngdbec34.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000020901699"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "47842"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ly1K35rDMsRjAklZF6aFVuOYHu6JjRTvFk90u7kzmww=\""
         },
         {
           "Name": "Last-Modified",
@@ -16757,45 +16796,6 @@
         {
           "Name": "Cache-Control",
           "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-C+jkcg+aWuWNhVK8pEKvER9n98Ean5nhyG5DwoWpj/M="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/Admin.wasm",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-ht5uvo0bvk.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000021117986"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "47352"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"zAPnmvcpjsjgp8RFgOyBHpwzjNv8acW0Z5LqIQZJAXk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -16811,19 +16811,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"C+jkcg+aWuWNhVK8pEKvER9n98Ean5nhyG5DwoWpj/M=\""
+          "Value": "W/\"+PUeuv7LqwN4ZH5DOADQFxiaxTpHh6VM1hUwJHuSSlI=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-C+jkcg+aWuWNhVK8pEKvER9n98Ean5nhyG5DwoWpj/M="
+          "Value": "sha256-+PUeuv7LqwN4ZH5DOADQFxiaxTpHh6VM1hUwJHuSSlI="
         }
       ]
     },
     {
       "Route": "_framework/Admin.wasm.gz",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-ht5uvo0bvk.gz",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\yc5pyinpjz-8wngdbec34.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16832,7 +16832,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "47352"
+          "Value": "47842"
         },
         {
           "Name": "Content-Type",
@@ -16840,11 +16840,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zAPnmvcpjsjgp8RFgOyBHpwzjNv8acW0Z5LqIQZJAXk=\""
+          "Value": "\"Ly1K35rDMsRjAklZF6aFVuOYHu6JjRTvFk90u7kzmww=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:42 GMT"
+          "Value": "Mon, 09 Jun 2025 02:20:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16862,7 +16862,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zAPnmvcpjsjgp8RFgOyBHpwzjNv8acW0Z5LqIQZJAXk="
+          "Value": "sha256-Ly1K35rDMsRjAklZF6aFVuOYHu6JjRTvFk90u7kzmww="
         }
       ]
     },
@@ -16885,7 +16885,46 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"rPosOxDxFpWsyZznCjwGDsk0tAgNMhelmCoWQQJTP60=\""
+          "Value": "\"6srReQe1hmPTeIGhELQDvUfnvLSDzzQyPISDXKmKm54=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 03:58:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6srReQe1hmPTeIGhELQDvUfnvLSDzzQyPISDXKmKm54="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/blazor.boot.json",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-mcdaz0lqn0.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000109373291"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9142"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xBcY2xwsq+zZBXBztVYtJK/b36av8XJ80kehCZFGAMQ=\""
         },
         {
           "Name": "Last-Modified",
@@ -16894,45 +16933,6 @@
         {
           "Name": "Cache-Control",
           "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-rPosOxDxFpWsyZznCjwGDsk0tAgNMhelmCoWQQJTP60="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/blazor.boot.json",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-smedm14z4e.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000109409190"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9139"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"1hng4wOb4xJypeECpg+wgFZExymK18+/ihzJ/nOfMQ4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:43 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -16948,19 +16948,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"rPosOxDxFpWsyZznCjwGDsk0tAgNMhelmCoWQQJTP60=\""
+          "Value": "W/\"6srReQe1hmPTeIGhELQDvUfnvLSDzzQyPISDXKmKm54=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-rPosOxDxFpWsyZznCjwGDsk0tAgNMhelmCoWQQJTP60="
+          "Value": "sha256-6srReQe1hmPTeIGhELQDvUfnvLSDzzQyPISDXKmKm54="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-smedm14z4e.gz",
+      "AssetFile": "C:\\Users\\f\\OneDrive - The University of Technology\\Document\\Uni\\HK4\\PBL3\\Admin\\obj\\Debug\\net8.0\\compressed\\uk5403vrt7-mcdaz0lqn0.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16969,7 +16969,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9139"
+          "Value": "9142"
         },
         {
           "Name": "Content-Type",
@@ -16977,11 +16977,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1hng4wOb4xJypeECpg+wgFZExymK18+/ihzJ/nOfMQ4=\""
+          "Value": "\"xBcY2xwsq+zZBXBztVYtJK/b36av8XJ80kehCZFGAMQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 02:18:43 GMT"
+          "Value": "Mon, 09 Jun 2025 02:20:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16999,7 +16999,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1hng4wOb4xJypeECpg+wgFZExymK18+/ihzJ/nOfMQ4="
+          "Value": "sha256-xBcY2xwsq+zZBXBztVYtJK/b36av8XJ80kehCZFGAMQ="
         }
       ]
     },
