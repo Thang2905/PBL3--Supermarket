@@ -1,6 +1,7 @@
 @page "/categories"
 @* @inject HttpClient Http *@
 @inject Admin.Services.AuthorizedHttpClient Http
+@inject NavigationManager Navigation
 @using Admin.Models
 
 <PageTitle>Danh mục sản phẩm</PageTitle>
@@ -88,6 +89,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        bool isLoggedIn = await Http.IsLoggedInAsync();
+
+        if (!isLoggedIn)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
         await LoadCategories();
     }
 
@@ -115,13 +124,6 @@ else
 
     private async Task SaveCategory(){
         if (newCategory == null) return;
-
-        bool isLoggedIn = await Http.LoginAsync("admin", "admin");
-        if (!isLoggedIn)
-        {
-            Console.WriteLine("Login failed");
-            return;
-        }
 
         var body = new CreateCategoryRequest
         {

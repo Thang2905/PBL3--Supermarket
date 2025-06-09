@@ -12,6 +12,7 @@ namespace Admin.Services
     {
         private readonly HttpClient _http;
         private readonly IJSRuntime _js;
+        public event Action? OnAuthStateChanged;
 
         public AuthorizedHttpClient(HttpClient http, IJSRuntime js)
         {
@@ -33,6 +34,7 @@ namespace Admin.Services
                     if (!string.IsNullOrEmpty(token))
                     {
                         await _js.InvokeVoidAsync("localStorage.setItem", "authToken", token);
+                        OnAuthStateChanged?.Invoke();
                         // await _js.InvokeVoidAsync("location.reload");
                         return true;
                     }
@@ -76,6 +78,19 @@ namespace Admin.Services
             }
 
             return false;
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _js.InvokeVoidAsync("localStorage.removeItem", "authToken");
+            _http.DefaultRequestHeaders.Authorization = null;
+            OnAuthStateChanged?.Invoke();
+        }
+
+        public async Task<bool> IsLoggedInAsync()
+        {
+            var token = await _js.InvokeAsync<string>("localStorage.getItem", "authToken");
+            return !string.IsNullOrEmpty(token);
         }
 
         public async Task<T?> GetFromJsonAsync<T>(string url)

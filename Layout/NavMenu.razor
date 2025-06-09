@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject Admin.Services.AuthorizedHttpClient Http
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Admin</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -7,51 +9,82 @@
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass nav-scrollable">
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link d-flex align-items-center" href="products">
-                <span class="bi bi-box-seam" aria-hidden="true"></span> Products
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="accounts">
-                <span class="bi bi-person-circle" aria-hidden="true"></span> Accounts
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="categories">
-                <span class="bi bi-tags-fill" aria-hidden="true"></span> Categories
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="suppliers">
-                <span class="bi bi-truck" aria-hidden="true"></span> Suppliers
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/statistic/revenue">
-                <span class="bi bi-bar-chart" aria-hidden="true"></span> Revenue Statistics
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/login">
-                <span class="bi bi-box-arrow-in-right" aria-hidden="true"></span> Login
-            </NavLink>
-        </div>
+
+        @if (!isLoggedIn)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/login">
+                    <span class="bi bi-box-arrow-in-right" aria-hidden="true"></span> Login
+                </NavLink>
+            </div>
+        }
+        else
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link d-flex align-items-center" href="products">
+                    <span class="bi bi-box-seam" aria-hidden="true"></span> Products
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="accounts">
+                    <span class="bi bi-person-circle" aria-hidden="true"></span> Accounts
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="categories">
+                    <span class="bi bi-tags-fill" aria-hidden="true"></span> Categories
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="suppliers">
+                    <span class="bi bi-truck" aria-hidden="true"></span> Suppliers
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/statistic/revenue">
+                    <span class="bi bi-bar-chart" aria-hidden="true"></span> Revenue Statistics
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/logout">
+                    <span class="bi bi-box-arrow-in-right" aria-hidden="true"></span> Logout
+                </NavLink>
+            </div>
+        }
         
     </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private bool isLoggedIn;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Lấy trạng thái đăng nhập khi component khởi tạo
+        isLoggedIn = await Http.IsLoggedInAsync();
+        Http.OnAuthStateChanged += AuthStateChanged;
+    }
+
+    private async void AuthStateChanged()
+    {
+        isLoggedIn = await Http.IsLoggedInAsync();
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Http.OnAuthStateChanged -= AuthStateChanged;
+    }
 
     private void ToggleNavMenu()
     {

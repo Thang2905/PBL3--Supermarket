@@ -16,8 +16,8 @@
     <ValidationSummary />
 
     <div class="mb-3">
-        <label>Email:</label>
-        <InputText @bind-Value="loginModel.Email" class="form-control" />
+        <label>Username:</label>
+        <InputText @bind-Value="loginModel.Username" class="form-control" />
     </div>
 
     <div class="mb-3">
@@ -36,16 +36,15 @@
     {
         try
         {
-            var response = await Http.PostAsJsonAsync("https://localhost:5001/api/auth/login", loginModel);
-
-            if (response.IsSuccessStatusCode)
+            if(loginModel.Username == "admin" || loginModel.Password == "admin")
             {
-                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-                if (result?.Token != null)
+                bool isLoggedIn = await Http.LoginAsync("admin", "admin");
+                if (!isLoggedIn)
                 {
-                    await AuthService.SaveToken(result.Token);
-                    Navigation.NavigateTo("/"); // Redirect sau login
+                    Console.WriteLine("Login failed");
+                    return;
                 }
+                Navigation.NavigateTo("/"); // Redirect sau login
             }
             else
             {
@@ -60,7 +59,7 @@
 
     public class LoginModel
     {
-        public string Email { get; set; } = "";
+        public string Username { get; set; } = "";
         public string Password { get; set; } = "";
     }
 
